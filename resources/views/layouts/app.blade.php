@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>App Page</h1>
+        <h1>Tasks List</h1>
 
         @yield('content')
     </div>
