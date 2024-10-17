@@ -29,7 +29,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all(); // Recupero dati
+
+        $validateData = $request->validate([ // Validazione Dati
+            'title' => 'required|max:100',
+            'description' => 'required',
+        ]);
+
+        $task = Task::create($validateData); // Creazione e salvataggio
+
+        return redirect()->route('tasks.index')->with('success', 'Nuovo Task Creato!');
     }
 
     /**

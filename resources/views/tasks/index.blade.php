@@ -6,6 +6,12 @@
     <div class="container">
         
         <a class="btn btn-primary" href="{{ route('tasks.create') }}" role="button">Add new Task</a>
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         
         @if (!$tasks->isEmpty())
             
@@ -25,6 +31,12 @@
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->description }}</td>
                             <td>{{ $task->is_completed }}</td>
+                            {{-- cella comandi --}}
+                            <td>
+                                <a href="#">Dettagli</a>
+                                <a href="#">Modifica</a>
+                                <a href="#">X</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
