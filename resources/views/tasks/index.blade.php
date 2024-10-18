@@ -3,7 +3,6 @@
 @section('title', 'Tasks List')
 
 @section('content')
-    <div class="container">
 
         {{-- Bottone di creazione nuovo record --}}
         <a class="btn btn-primary" href="{{ route('tasks.create') }}" role="button">Add new Task</a>
@@ -20,17 +19,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Complited</th>
+                    <th scope="col">Opr</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach ($tasks as $task)
                         <tr>
-                            <th scope="row">{{ $task->id }}</th>
-                            <td>{{ $task->title }}</td>
+                            <td>
+                                <b>{{ $task->title }}</b>
+                            </td>
                             <td>{{ $task->description }}</td>
                             <td>{{ $task->is_completed }}</td>
                             {{-- cella comandi --}}
@@ -53,5 +53,4 @@
         @else
             <h3 class="text-danger">Nessun Task presente!</h3>
         @endif
-    </div>
 @endsection
