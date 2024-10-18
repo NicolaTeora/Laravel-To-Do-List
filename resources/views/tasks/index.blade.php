@@ -4,11 +4,13 @@
 
 @section('content')
     <div class="container">
-        
+
+        {{-- Bottone di creazione nuovo record --}}
         <a class="btn btn-primary" href="{{ route('tasks.create') }}" role="button">Add new Task</a>
 
+        {{-- Messaggio di operazione avvenuta con successo --}}
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mt-2">
                 {{ session('success') }}
             </div>
         @endif
@@ -33,9 +35,15 @@
                             <td>{{ $task->is_completed }}</td>
                             {{-- cella comandi --}}
                             <td>
-                                <a href="#">Dettagli</a>
-                                <a href="#">Modifica</a>
-                                <a href="#">X</a>
+                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning"><i class="bi bi-vector-pen"></i></a>
+                                {{-- cancellazione record --}}
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>                     
+                                </form>
                             </td>
                         </tr>
                     @endforeach

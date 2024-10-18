@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Home page')
+@section('title', 'Home')
 
 @section('content')
-    
-<h2>Home Page</h2>
+
+<div class="text-center">
+    <h2>ToDo List</h2>
+    <p>Benvenuto nel tuo gestionale delle cose da fare!</p>
+</div>
 
 @endsection

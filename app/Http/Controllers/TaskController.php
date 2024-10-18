@@ -10,10 +10,11 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // Recupera tutte le risorse
     {
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        $tasks = Task::all(); // paginazione Task::paginate(10)
+
+        return view('tasks.index', compact('tasks')); // Ritorna la vista con i tasks
     }
 
     /**
@@ -21,7 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        return view('tasks.create'); // Ritorna la vista del form per la creazione
     }
 
     /**
@@ -46,7 +47,9 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::findOrFail($id); // Trova la risorsa nel database
+
+        return view('tasks.show', compact('task')); // Ritorna la vista con il task
     }
 
     /**
@@ -54,7 +57,9 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::findOrFail($id); // Trova la risorsa nel database
+
+        return view('tasks.edit', compact('task')); // Ritorna la vista con il form per modificare
     }
 
     /**
@@ -62,7 +67,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validateData = $request->validate([ // Validazione Dati
+            'title' => 'required|max:100',
+            'description' => 'required',
+        ]);
+
+        $task = Task::findOrFail($id); // Trova la risorsa da aggiornare
+
+        $task->update($validateData); // Aggiorna i dati del task
+
+        return redirect()->route('tasks.show', $task->id)->with('success', 'Record aggiornato con successo!');
     }
 
     /**
@@ -70,6 +84,10 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task = Task::findOrFail($id); // Trova la risorsa da eliminare
+
+        $task->delete(); // Cancella il record
+
+        return redirect()->route('tasks.index')->with('success', 'Task Eliminato!');
     }
 }
