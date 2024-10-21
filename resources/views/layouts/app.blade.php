@@ -13,7 +13,7 @@
     
     <div class="container">
 
-        <h1 class="my-2 text-primary">Tasks APP</h1>
+        <h1 class="my-2 text-primary text-center">Tasks APP</h1>
 
         @yield('content')
     </div>

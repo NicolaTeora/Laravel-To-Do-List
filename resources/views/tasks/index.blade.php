@@ -32,17 +32,23 @@
                                 <b>{{ $task->title }}</b>
                             </td>
                             <td>{{ $task->description }}</td>
-                            <td>{{ $task->is_completed }}</td>
+                            <td class="text-center">
+                                @if($task->completed)
+                                    <span class="badge text-bg-primary text-wrap">completato</span>
+                                @else
+                                    <span class="badge text-bg-danger text-wrap">incompleto</span>
+                                @endif
+                            </td>
                             {{-- cella comandi --}}
                             <td>
-                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning"><i class="bi bi-vector-pen"></i></a>
+                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-primary mb-1"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning mb-1"><i class="bi bi-vector-pen"></i></a>
                                 {{-- cancellazione record --}}
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>                     
+                                    <button type="submit" class="btn btn-danger mb-1"><i class="bi bi-trash"></i></button>                     
                                 </form>
                             </td>
                         </tr>
