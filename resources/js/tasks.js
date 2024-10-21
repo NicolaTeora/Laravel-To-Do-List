@@ -20,10 +20,10 @@ document.querySelectorAll(".toggle-complete").forEach((switchElement) => {
                 if (isChecked) {
                     statusText.textContent = "Completato";
                     statusText.classList.remove("text-bg-danger");
-                    statusText.classList.add("text-bg-primary");
+                    statusText.classList.add("text-bg-success");
                 } else {
                     statusText.textContent = "Non Completato";
-                    statusText.classList.remove("text-bg-primary");
+                    statusText.classList.remove("text-bg-success");
                     statusText.classList.add("text-bg-danger");
                 }
             })
