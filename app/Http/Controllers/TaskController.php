@@ -90,4 +90,19 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index')->with('success', 'Task Eliminato!');
     }
+
+    /**
+     * Toggle Status Task
+     */
+    public function toggleComplete($id)
+    {
+        $task = Task::findOrFail($id); // Trova il task
+
+        // Cambia lo stato da true a false o viceversa
+        $task->is_completed = !$task->is_completed;
+
+        $task->save(); // Salva la modifica
+
+        return response()->json(['success' => true]);
+    }
 }

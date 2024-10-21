@@ -19,3 +19,4 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('tasks', TaskController::class);
+Route::patch('/tasks/{id}/toggle-complete', [TaskController::class, 'toggleComplete'])->name('tasks.toggleComplete');

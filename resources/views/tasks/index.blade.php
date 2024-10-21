@@ -32,12 +32,16 @@
                                 <b>{{ $task->title }}</b>
                             </td>
                             <td>{{ $task->description }}</td>
-                            <td class="text-center">
-                                @if($task->completed)
-                                    <span class="badge text-bg-primary text-wrap">completato</span>
-                                @else
-                                    <span class="badge text-bg-danger text-wrap">incompleto</span>
-                                @endif
+                            <!-- Switch per completare il task -->
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input toggle-complete" id="task-{{ $task->id }}"
+                                           data-task-id="{{ $task->id }}"
+                                           {{ $task->is_completed ? 'checked' : '' }}>
+                                    <label class="form-check-label status-text badge text-bg-danger text-wrap" for="task-{{ $task->id }}">
+                                        {{ $task->is_completed ? 'Completato' : 'Non Completato' }}
+                                    </label>
+                                </div>
                             </td>
                             {{-- cella comandi --}}
                             <td>
